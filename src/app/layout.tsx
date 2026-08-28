@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { WalletProvider } from "@/components/WalletProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const title = "commas - blog";
+const title = "ansemchain - blog";
 const description =
-  "Writing from commas on collectible markets, tokenized cards, and what we're building.";
+  "Writing from ansemchain on fair launches, the bridge, and the culture we are building.";
 
 export const metadata: Metadata = {
   title,
@@ -47,7 +47,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <WalletProvider>{children}</WalletProvider>
       </body>
     </html>
   );

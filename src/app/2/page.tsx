@@ -188,7 +188,7 @@ export default function BlogPage() {
         <div className="mb-12 max-w-5xl mx-auto">
           <div className="flex items-center justify-between gap-4 mb-4">
             <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold tracking-tight leading-[1.1] sm:whitespace-normal">
-              The Philosophy: bringing the culture back
+              Horns and a feed that is actually yours
             </h1>
 
             <div className="flex items-center gap-3 shrink-0">
@@ -215,183 +215,129 @@ export default function BlogPage() {
           </div>
 
           <p className="text-xl text-zinc-400 font-light">
-            Memecoins used to be culture. ansemchain is a dedicated chain built
-            to make them culture again.
+            Rewards that come from real trading, and a social feed the community
+            owns instead of rents.
           </p>
         </div>
 
         {/* Article Body */}
         <article className="prose prose-invert prose-lg max-w-3xl mx-auto text-zinc-300 leading-relaxed">
           <p className="mb-6">
-            Memecoins used to be culture. A community forming around an idea.
-            Shared ownership of a joke, a movement, a moment in time. People
-            bought in because they believed in something, even when that
-            something was absurd. Especially when it was absurd. That was the
-            point.
-          </p>
-
-          <p className="mb-6">
-            Look at Solana now. Thousands of launches a day. Tokens that exist
-            for hours. Snipers front-run every launch, bundlers coordinate the
-            dump, insiders exit on retail. The meta rotates weekly. Nobody is
-            building a community. Everyone is racing to extract before the next
-            person does.
+            The last post laid out the base rules. Fair launches, a fixed
+            supply, fees that stay in the ecosystem, and a treasury the
+            community directs. That is the floor everything else is built on.
+            This one is about what we built on top of it: Horns, which route a
+            slice of real trading back to the people who stake, and a social
+            layer where the record of who said what is yours, not a company&apos;s.
           </p>
 
           <p className="mb-12">
-            The tools won. Platforms take fees. Deployers take allocations.
-            Trackers sell the alpha until there is no edge left. Somewhere along
-            the way the culture part got hollowed out, and what is left is
-            infrastructure for extraction wearing the skin of a memecoin.
+            Both come from the same idea. The people who show up and stay should
+            be the ones who benefit and the ones who steer. Not a team, not a
+            platform, not whoever moved fastest on launch day.
           </p>
 
           <hr className="my-8 border-white/[0.08]" />
 
           <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-            ansemchain exists to bring the culture back
+            Horns: rewards from real trading
           </h2>
 
           <p className="mb-6">
-            ansemchain is a dedicated chain where a token is not competing with
-            ten thousand launches for a few minutes of attention. Fair launches
-            only. No presales. No team allocations. The creator starts with zero
-            tokens and buys on the same bonding curve, at the same price, as
-            everyone else.
+            Post one established that fees stay in the ecosystem instead of being
+            skimmed by a team. Horns are the next step. They take a slice of that
+            trading and route it back to the holders who stake.
           </p>
 
           <p className="mb-6">
-            Anyone can launch. There is no allowlist, no application, and no
-            gatekeeper deciding what deserves to exist. Creation is permissionless
-            by design. What you cannot do is start ahead of the people who show
-            up.
+            A Horn is a v4-style hook on the graduation AMM. When a coin
+            graduates from its bonding curve to the automated market, its creator
+            can bolt on a Horn. The most direct one skims a slice of every swap
+            fee into the Horn Vault, where ANSEM and CHANSE stakers earn it. It
+            accrues every block, pro-rata to your stake. Real trading becomes real
+            yield for the people who hold and stake, not for a team.
           </p>
 
           <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
-            The creator gets no pre-mint, no fee cut, and no head start. They
-            walk through the same door as the crowd. That is the whole idea.
-          </blockquote>
-
-          <hr className="my-8 border-white/[0.08]" />
-
-          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-            Fees that stay in the ecosystem
-          </h2>
-
-          <p className="mb-6">
-            Every token launches with a fixed supply of 100,000. Nobody can mint
-            more, including the creator and including us. It trades on a bonding
-            curve and graduates to an automated market when it reaches its target
-            market cap, at exactly the price the curve ended on. No cliff.
-          </p>
-
-          <p className="mb-6">
-            Fees do not leave the ecosystem. Buys pay 0.5%. Sells pay 3.5%. Low
-            cost to enter, higher cost to flip, aligned with the people who stay
-            instead of the ones who dump. Instead of being skimmed by a team,
-            every one of those fees collects in a treasury wallet, the input
-            wallet, that no insider can quietly drain. No creator cut. No
-            protocol cut.
-          </p>
-
-          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
-            When a token graduates, the entire raise becomes permanent, locked
-            liquidity. There are no LP tokens to pull. The floor cannot be yanked
-            out from under holders. No rug pulls, ever.
+            By default the skim is a fraction of each swap&apos;s fee, 20% of it,
+            split evenly between the ANSEM and CHANSE staker sinks. The trading
+            was already happening. Now a piece of it lands on the people who stay.
           </blockquote>
 
           <p className="mb-6">
-            The deeper the trading, the stronger the floor. Activity does not
-            drain the token, it reinforces it.
-          </p>
-
-          <p className="mb-12">
-            What happens with everything the treasury collects is not ours to
-            decide. We will put it to holders through the on-chain proposals
-            system, one signed vote with a verifiable outcome, and let the
-            community choose what all of it funds. The people who showed up
-            direct the money, not a team behind closed doors.
-          </p>
-
-          <hr className="my-8 border-white/[0.08]" />
-
-          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-            Rules the contract enforces, not the frontend
-          </h2>
-
-          <p className="mb-6">
-            No wallet can hold more than 3% of any token&apos;s supply. That
-            cap is enforced on-chain, on every bonding-curve buy and every swap
-            after graduation. It is not a UI suggestion a bundler can route
-            around with a hundred wallets.
-          </p>
-
-          <p className="mb-12">
-            Supply is fixed at creation and can only shrink. Curve terms cannot
-            be edited after launch. A ticker that is in use cannot be relaunched,
-            with a cooldown afterward, so nobody vampires a live name. The rules
-            are the code, and the code does not negotiate.
-          </p>
-
-          <hr className="my-8 border-white/[0.08]" />
-
-          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-            A chain that does not print against you
-          </h2>
-
-          <p className="mb-6">
-            ansemchain has zero inflation. The mint module is switched off. No
-            new base tokens are ever created, so holders are never diluted to pay
-            for block production. Validators are paid from transaction fees
-            alone.
+            A Horn does not have to reward. It can reshape the pool instead, or
+            alongside. Fee Decay starts a graduated pool at a high fee that decays
+            down to the base rate, so the snipers who rush the first blocks pay the
+            most and everyone who arrives after pays normal. Dynamic Fee reacts to
+            conditions rather than sitting at a flat rate.
           </p>
 
           <p className="mb-6">
-            The chain runs two coins. CHANSE is the gas and staking token. ANSEM
-            is a one-to-one bridged voucher for the ANSEM token on Solana:
-            tradeable and bridgeable, never a gas token, never inflated. Both are
-            fixed. Neither is printed into existence.
+            There is a wider catalog a creator can attach: an oracle-arb Horn, a
+            StableSwap curve, an am-AMM fee auction, an anti-sandwich same-block
+            surcharge, and more. The point is that the pool&apos;s behavior is a
+            choice made once, out in the open, not a lever someone reaches for
+            later.
           </p>
 
           <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
-            Governance is on-chain. Proposals and votes are signed transactions
-            with verifiable outcomes, not a team making decisions in a Discord.
-            The community steers, on the record.
-          </blockquote>
-
-          <hr className="my-8 border-white/[0.08]" />
-
-          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-            Utility for ANSEM, without the sell pressure
-          </h2>
-
-          <p className="mb-6">
-            We are adding utility to the ANSEM token itself. Bridge your ANSEM in
-            and you get the run of the whole chain: launch memes, trade the ones
-            other people launch, and join everything else the ecosystem grows
-            into. The token stops being something you just hold and starts being
-            something you use.
-          </p>
-
-          <p className="mb-6">
-            None of that touches the price of ANSEM. The meme economy on
-            ansemchain runs on CHANSE, the gas and staking coin. ANSEM is never
-            spent on gas, never the pair you trade against, and never inflated.
-            You can be as active as you want and not a single ANSEM of yours is
-            put up for sale to do it.
-          </p>
-
-          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
-            The only measurable effect on ANSEM is a positive one. When you
-            bridge in, your ANSEM is locked in the bridge vault on Solana and a
-            one-to-one voucher is minted here. That supply comes off the
-            circulating market for as long as you stay.
+            A pool&apos;s Horn is set at graduation and is immutable after.
+            Nobody can bolt a malicious hook onto a live pool later. What you see
+            at graduation is what the pool is, for good.
           </blockquote>
 
           <p className="mb-12">
-            Bridge out and the voucher is burned and your ANSEM released, so a
-            round trip is neutral. But every holder who bridges in and stays is
-            circulating supply removed rather than sold. It is utility that
-            quietly tightens the float instead of loosening it.
+            To be straight about scope: this applies to coins that graduate from
+            here on. Live on ansemchain today are the Horn Vault, the fee-share
+            routing into it, and the Fee Decay and Dynamic Fee horns. The rest of
+            the catalog is where this goes next.
+          </p>
+
+          <hr className="my-8 border-white/[0.08]" />
+
+          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            SocialFi: a feed that is actually yours
+          </h2>
+
+          <p className="mb-6">
+            ansemchain has a social layer. A timeline where you post, like,
+            repost, quote, follow people, keep a profile, and comment on tokens. A
+            real feed for the whole chain, not a comment box bolted onto a chart.
+            A memecoin community needs a town square, and this one is built in.
+          </p>
+
+          <p className="mb-6">
+            Every action is signed by your wallet. Authorship is cryptographic,
+            your signature, not a platform account that can be handed to someone
+            else or taken from you. Your posts are provably yours, and a username
+            is bound to your address rather than rented from a company.
+          </p>
+
+          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
+            Posting is free. Gas is sponsored, so you are not paying a fee to
+            speak. The signature is what binds the content to you, not the payment.
+          </blockquote>
+
+          <p className="mb-6">
+            Because it is signature-authenticated, the feed can live on-chain and
+            be read straight out of the explorer. Authorship comes from the signer,
+            not from whoever submitted the transaction. That is the line between a
+            social app and SocialFi. The record is yours and verifiable, not a
+            company&apos;s to sell, throttle, or delete.
+          </p>
+
+          <p className="mb-6">
+            Honest about where this stands: the signed feed, post, like, repost,
+            follow, and profile, is live in the app today. Anchoring it fully
+            on-chain through the social contract is how it becomes SocialFi in the
+            strong sense. We are not going to claim more than that.
+          </p>
+
+          <p className="mb-12">
+            But the direction is the same one that runs through everything here. A
+            community needs a place to talk that it owns, on the record, where the
+            people who show up are the ones who shape it. Not a feed that belongs
+            to whoever hosts it.
           </p>
 
           <hr className="my-8 border-white/[0.08]" />
@@ -401,34 +347,27 @@ export default function BlogPage() {
           </h2>
 
           <p className="mb-6">
-            The chain is live. The launchpad, the AMM, the cross-chain bridge
-            between Solana and ansemchain, the browser wallet, and three Telegram
-            bots for trading, bridging, and proposals are all running today. The
-            docs at{" "}
+            Live now: the Horn Vault, the fee-share routing that feeds it, and the
+            Fee Decay and Dynamic Fee horns on graduated pools. The signed social
+            feed is live in the app too, with posts, likes, reposts, follows, and
+            profiles all bound to your wallet. The docs at{" "}
             <Link
-              href="https://ansemchain.fun"
+              href="https://docs.ansemchain.fun"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
               style={{ color: "var(--accent)" }}
             >
-              ansemchain.fun
+              docs.ansemchain.fun
             </Link>{" "}
-            cover every detail, from a quickstart to the exact economics.
+            cover the details.
           </p>
 
           <p className="mb-12">
-            The bots handle execution: wallet, bridge, trading. The alpha is up
-            to you to find. More on how the chain works, and why so much of it
-            lives in Telegram, in{" "}
-            <Link
-              href="/2"
-              className="hover:underline"
-              style={{ color: "var(--accent)" }}
-            >
-              the next post
-            </Link>
-            .
+            The direction from here is the rest of the Horn catalog and the feed
+            anchored fully on-chain through the social contract. Same rule as
+            always: the people who stay get the rewards, and the community steers,
+            on the record.
           </p>
 
           <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full mb-8 mt-12">

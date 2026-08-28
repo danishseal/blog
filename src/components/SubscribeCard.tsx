@@ -39,9 +39,9 @@ export default function SubscribeCard() {
       className="bg-[#1c1817] border border-zinc-800 rounded-2xl p-6 flex flex-col gap-4"
     >
       <div className="flex flex-col gap-1">
-        <h3 className="font-bold text-white text-xl">Subscribe to commas</h3>
+        <h3 className="font-bold text-white text-xl">Subscribe to ansemchain</h3>
         <p className="text-sm text-zinc-500">
-          The Last Supper series, in your inbox.
+          New posts and launch details, in your inbox.
         </p>
       </div>
 
@@ -49,7 +49,7 @@ export default function SubscribeCard() {
         <div className="flex items-center gap-2 text-sm text-white">
           <span
             className="inline-flex items-center justify-center w-5 h-5 rounded-full text-[#0b0d10] text-xs"
-            style={{ backgroundColor: "#3550bf" }}
+            style={{ backgroundColor: "var(--accent-solid)" }}
           >
             ✓
           </span>
@@ -71,7 +71,7 @@ export default function SubscribeCard() {
               onClick={submit}
               disabled={!EMAIL_RE.test(email.trim()) || busy}
               className="text-[#27261b] text-sm font-medium px-5 h-11 rounded-full transition-all duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-40 disabled:hover:translate-y-0"
-              style={{ backgroundColor: "#3550bf" }}
+              style={{ backgroundColor: "var(--accent-solid)" }}
             >
               {busy ? "…" : "Subscribe"}
             </button>

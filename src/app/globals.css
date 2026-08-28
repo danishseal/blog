@@ -1,22 +1,26 @@
 @import "tailwindcss";
 
+/* ANSEM theme: dark background, green accents. Single source of truth — every
+   accent in the app resolves to these vars, so retheming is a one-line change. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  /* ANSEM neon green — links, borders, highlights, selection. */
+  --accent: #6cef4b;
+  /* Deeper green — solid button / avatar backgrounds (readable light text). */
+  --accent-solid: #16a34a;
+  --accent-solid-hover: #15803d;
+  /* Text placed on top of a neon-green surface. */
+  --accent-contrast: #0b0d10;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-solid: var(--accent-solid);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {

@@ -27,7 +27,7 @@ export function Providers({ children }: { children: ReactNode }) {
       config={{
         appearance: {
           theme: "dark",
-          accentColor: "#3b82f6",
+          accentColor: "#6cef4b",
           walletChainType: "solana-only",
           walletList: ["phantom", "solflare", "detected_solana_wallets"],
         },

@@ -1,13 +1,15 @@
 "use client";
 
-import { usePrivy } from "@privy-io/react-auth";
 import { useEffect, useState } from "react";
+import { useWallet } from "@/components/WalletProvider";
+import { shortAddr, signMessage } from "@/lib/ansem";
+import { challengeMessage } from "@/lib/challenge";
 
 type Comment = { id: string; author: string; text: string; ts: number };
 
 export default function Comments() {
-  const { ready, authenticated, user, login, logout, getAccessToken } =
-    usePrivy();
+  const { address, connecting, error: walletError, connect, disconnect } =
+    useWallet();
   const [comments, setComments] = useState<Comment[]>([]);
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
@@ -20,28 +22,26 @@ export default function Comments() {
       .catch(() => {});
   }, []);
 
-  const authorLabel = () => {
-    if (!user) return "you";
-    if (user.email?.address) return user.email.address;
-    const addr = user.wallet?.address;
-    if (addr) return `${addr.slice(0, 4)}..${addr.slice(-4)}`;
-    return "you";
-  };
-
   const post = async () => {
     const text = draft.trim();
-    if (!text || busy) return;
+    if (!text || busy || !address) return;
     setBusy(true);
     setError(null);
     try {
-      const token = await getAccessToken();
+      // 1. Get a one-time challenge from the server.
+      const nonce: string = await fetch("/api/comments/challenge")
+        .then((r) => r.json())
+        .then((d) => d.nonce);
+      // 2. Sign it (with the comment bound in) using the ansemchain wallet.
+      const { signature, pubKey } = await signMessage(
+        address,
+        challengeMessage(nonce, text),
+      );
+      // 3. Post; the server re-derives the address and verifies the signature.
       const res = await fetch("/api/comments", {
         method: "POST",
-        headers: {
-          "content-type": "application/json",
-          ...(token ? { authorization: `Bearer ${token}` } : {}),
-        },
-        body: JSON.stringify({ text }),
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ text, address, pubKey, signature, nonce }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -50,8 +50,8 @@ export default function Comments() {
       }
       setComments((prev) => [data.comment, ...prev]);
       setDraft("");
-    } catch {
-      setError("could not post");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "could not post");
     } finally {
       setBusy(false);
     }
@@ -69,18 +69,18 @@ export default function Comments() {
     >
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">{heading}</h2>
-        {ready && authenticated && (
+        {address && (
           <button
             type="button"
-            onClick={logout}
-            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+            onClick={disconnect}
+            className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors font-mono"
           >
-            {authorLabel()} · log out
+            {shortAddr(address)} · disconnect
           </button>
         )}
       </div>
 
-      {ready && authenticated ? (
+      {address ? (
         <div className="flex flex-col gap-3">
           <textarea
             value={draft}
@@ -94,21 +94,24 @@ export default function Comments() {
             type="button"
             onClick={post}
             disabled={!draft.trim() || busy}
-            className="self-end text-white text-sm font-medium px-4 py-2 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-40 disabled:hover:translate-y-0"
-            style={{ backgroundColor: "#3b82f6" }}
+            className="self-end text-[var(--accent-contrast)] text-sm font-medium px-4 py-2 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 disabled:opacity-40 disabled:hover:translate-y-0"
+            style={{ backgroundColor: "var(--accent-solid)" }}
           >
-            {busy ? "Posting…" : "Post"}
+            {busy ? "Signing…" : "Post"}
           </button>
         </div>
       ) : (
-        <button
-          type="button"
-          onClick={login}
-          disabled={!ready}
-          className="bg-[#e6ebfe] hover:bg-zinc-50 text-[#6c88f9] font-medium px-4 py-2 rounded-xl transition-colors w-full my-2 h-10 disabled:opacity-60"
-        >
-          {ready ? "Login to comment" : "Loading…"}
-        </button>
+        <div className="flex flex-col gap-2 my-2">
+          <button
+            type="button"
+            onClick={connect}
+            disabled={connecting}
+            className="bg-[var(--accent)] hover:bg-[var(--accent-solid-hover)] text-[var(--accent-contrast)] font-medium px-4 py-2 rounded-xl transition-colors w-full h-10 disabled:opacity-60"
+          >
+            {connecting ? "Connecting…" : "Connect ansemchain wallet to comment"}
+          </button>
+          {walletError && <p className="text-xs text-red-400">{walletError}</p>}
+        </div>
       )}
 
       {comments.length > 0 && (

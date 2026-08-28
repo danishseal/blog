@@ -19,9 +19,14 @@ const fmtTicker = (t: string) =>
 /** Blog posts, extend as the series grows. */
 const POSTS: Post[] = [
   {
-    title: "The Last Supper, Panel I: a token that owns a price",
-    sub: "What commas is and how it works.",
+    title: "The Philosophy: bringing the culture back",
+    sub: "Why ansemchain exists and how its fair launches work.",
     href: "/1",
+  },
+  {
+    title: "Horns and a feed that is actually yours",
+    sub: "How Horns route real trading back to stakers, and how the signed social feed works.",
+    href: "/2",
   },
 ];
 
@@ -71,7 +76,7 @@ export default function SearchModal({
           .map((x: any) => ({
             ticker: String(x.ticker),
             name: String(x.name ?? x.ticker),
-            href: "https://launch.commas.art",
+            href: "https://ansemchain.fun",
             image: resolveImg(x.image),
           }));
         setTokens(list);

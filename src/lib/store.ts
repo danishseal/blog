@@ -101,3 +101,40 @@ export async function getSubscriberCount(): Promise<number> {
   }
   return (await readJson<string[]>("subscribers.json", [])).length;
 }
+
+// ---------- One-time comment challenge nonces ----------
+
+const NONCE_KEY = "ansem:nonce";
+const NONCE_TTL_MS = 5 * 60 * 1000;
+
+/** Mint a single-use challenge nonce that expires in a few minutes. */
+export async function issueNonce(): Promise<string> {
+  const nonce = crypto.randomUUID();
+  if (USE_UPSTASH) {
+    const r = await redis();
+    await r.set(`${NONCE_KEY}:${nonce}`, "1", { px: NONCE_TTL_MS });
+    return nonce;
+  }
+  const map = await readJson<Record<string, number>>("nonces.json", {});
+  const now = Date.now();
+  for (const k of Object.keys(map)) if (map[k] < now) delete map[k];
+  map[nonce] = now + NONCE_TTL_MS;
+  await writeJson("nonces.json", map);
+  return nonce;
+}
+
+/** Atomically spend a nonce. Returns true only if it existed and was unexpired. */
+export async function consumeNonce(nonce: string): Promise<boolean> {
+  if (!nonce) return false;
+  if (USE_UPSTASH) {
+    const r = await redis();
+    const existed = await r.getdel(`${NONCE_KEY}:${nonce}`);
+    return !!existed;
+  }
+  const map = await readJson<Record<string, number>>("nonces.json", {});
+  const exp = map[nonce];
+  if (exp === undefined) return false;
+  delete map[nonce];
+  await writeJson("nonces.json", map);
+  return exp >= Date.now();
+}
