@@ -1,4 +1,4 @@
-/** The blog's posts, in order. One place: the index and search both read it. */
+/** The blog's posts, in order. One place: search and any nav read it. */
 export interface Post {
   title: string;
   sub: string;
@@ -8,12 +8,7 @@ export interface Post {
 export const POSTS: Post[] = [
   {
     title: "The Philosophy: bringing the culture back",
-    sub: "Why ansemchain exists and how its fair launches work.",
+    sub: "Why ansemchain exists, how fair launches work, Horns rewards from real trading, and the signed SocialFi feed.",
     href: "/1",
-  },
-  {
-    title: "Horns and a feed that is actually yours",
-    sub: "How Horns route real trading back to stakers, and how the signed social feed works.",
-    href: "/2",
   },
 ];

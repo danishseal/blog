@@ -315,6 +315,54 @@ export default function BlogPage() {
           <hr className="my-8 border-white/[0.08]" />
 
           <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            Horns: rewards from real trading
+          </h2>
+
+          <p className="mb-6">
+            Fees staying in the ecosystem is the floor. Horns are the next
+            step. They take a slice of that trading and route it back to the
+            holders who stake.
+          </p>
+
+          <p className="mb-6">
+            A Horn is a v4-style hook on the graduation AMM. When a coin
+            graduates from its bonding curve to the automated market, its creator
+            can bolt on a Horn. The most direct one skims a slice of every swap
+            fee into the Horn Vault, where ANSEM and CHANSE stakers earn it. It
+            accrues every block, pro-rata to your stake. Real trading becomes real
+            yield for the people who hold and stake, not for a team.
+          </p>
+
+          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
+            By default the skim is a fraction of each swap&apos;s fee, 20% of it,
+            split evenly between the ANSEM and CHANSE staker sinks. The trading
+            was already happening. Now a piece of it lands on the people who stay.
+          </blockquote>
+
+          <p className="mb-6">
+            A Horn does not have to reward. It can reshape the pool instead, or
+            alongside. Fee Decay starts a graduated pool at a high fee that decays
+            down to the base rate, so the snipers who rush the first blocks pay the
+            most and everyone who arrives after pays normal. Dynamic Fee reacts to
+            conditions rather than sitting at a flat rate. There is a wider catalog
+            a creator can attach: an oracle-arb Horn, a StableSwap curve, an am-AMM
+            fee auction, an anti-sandwich same-block surcharge, and more.
+          </p>
+
+          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
+            A pool&apos;s Horn is set at graduation and is immutable after.
+            Nobody can bolt a malicious hook onto a live pool later. What you see
+            at graduation is what the pool is, for good.
+          </blockquote>
+
+          <p className="mb-12">
+            The pool&apos;s behavior is a choice made once, out in the open, not
+            a lever someone reaches for later.
+          </p>
+
+          <hr className="my-8 border-white/[0.08]" />
+
+          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
             Rules the contract enforces, not the frontend
           </h2>
 
@@ -361,6 +409,39 @@ export default function BlogPage() {
           <hr className="my-8 border-white/[0.08]" />
 
           <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            SocialFi: a feed that is actually yours
+          </h2>
+
+          <p className="mb-6">
+            ansemchain has a social layer. A timeline where you post, like,
+            repost, quote, follow people, keep a profile, and comment on tokens. A
+            real feed for the whole chain, not a comment box bolted onto a chart.
+            A memecoin community needs a town square, and this one is built in.
+          </p>
+
+          <p className="mb-6">
+            Every action is signed by your wallet. Authorship is cryptographic,
+            your signature, not a platform account that can be handed to someone
+            else or taken from you. Your posts are provably yours, and a username
+            is bound to your address rather than rented from a company.
+          </p>
+
+          <blockquote className="border-l-2 border-[var(--accent)] pl-6 my-8 italic text-zinc-400">
+            Posting is free. Gas is sponsored, so you are not paying a fee to
+            speak. The signature is what binds the content to you, not the payment.
+          </blockquote>
+
+          <p className="mb-12">
+            Because it is signature-authenticated, the feed can live on-chain and
+            be read straight out of the explorer. Authorship comes from the signer,
+            not from whoever submitted the transaction. That is the line between a
+            social app and SocialFi. The record is yours and verifiable, not a
+            company&apos;s to sell, throttle, or delete.
+          </p>
+
+          <hr className="my-8 border-white/[0.08]" />
+
+          <h2 className="text-2xl font-bold text-white mt-12 mb-4">
             Utility for ANSEM, without the sell pressure
           </h2>
 
@@ -403,32 +484,31 @@ export default function BlogPage() {
           <p className="mb-6">
             The chain is live. The launchpad, the AMM, the cross-chain bridge
             between Solana and ansemchain, the browser wallet, and three Telegram
-            bots for trading, bridging, and proposals are all running today. The
-            docs at{" "}
+            bots for trading, bridging, and proposals are all running today. So
+            are the Horn Vault, the fee-share routing that feeds it, and the Fee
+            Decay and Dynamic Fee horns on graduated pools. The signed social
+            feed is live in the app, with posts, likes, reposts, follows, and
+            profiles bound to your wallet; anchoring it fully on-chain through
+            the social contract is how it becomes SocialFi in the strong sense.
+            The docs at{" "}
             <Link
-              href="https://ansemchain.fun"
+              href="https://docs.ansemchain.fun"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline"
               style={{ color: "var(--accent)" }}
             >
-              ansemchain.fun
+              docs.ansemchain.fun
             </Link>{" "}
             cover every detail, from a quickstart to the exact economics.
           </p>
 
           <p className="mb-12">
             The bots handle execution: wallet, bridge, trading. The alpha is up
-            to you to find. More on how the chain works, and why so much of it
-            lives in Telegram, in{" "}
-            <Link
-              href="/2"
-              className="hover:underline"
-              style={{ color: "var(--accent)" }}
-            >
-              the next post
-            </Link>
-            .
+            to you to find. The direction from here is the rest of the Horn
+            catalog and the feed anchored fully on-chain. Same rule as always:
+            the people who stay get the rewards, and the community steers, on
+            the record.
           </p>
 
           <div className="flex flex-col gap-4 max-w-2xl mx-auto w-full mb-8 mt-12">
