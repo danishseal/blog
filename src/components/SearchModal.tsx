@@ -3,8 +3,9 @@
 import { Search as SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { POSTS, type Post } from "@/lib/posts";
 
-type Post = { title: string; sub: string; href: string };
+
 type TokenResult = {
   ticker: string;
   name: string;
@@ -16,19 +17,7 @@ type TokenResult = {
 const fmtTicker = (t: string) =>
   t.toLowerCase().startsWith("fl") ? `$${t.slice(2)}` : `$${t}`;
 
-/** Blog posts, extend as the series grows. */
-const POSTS: Post[] = [
-  {
-    title: "The Philosophy: bringing the culture back",
-    sub: "Why ansemchain exists and how its fair launches work.",
-    href: "/1",
-  },
-  {
-    title: "Horns and a feed that is actually yours",
-    sub: "How Horns route real trading back to stakers, and how the signed social feed works.",
-    href: "/2",
-  },
-];
+
 
 /**
  * Token source. Defaults to the local indexer for dev; point
