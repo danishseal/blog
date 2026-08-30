@@ -1,3 +1,0 @@
-# blog
-
-The Ansemchain blog.
